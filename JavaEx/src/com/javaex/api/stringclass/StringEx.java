@@ -4,7 +4,36 @@ public class StringEx {
 
 	public static void main(String[] args) {
 //		stringBasic();
-		usefulMethods();
+//		usefulMethods();
+		stringBufferEx();
+	}
+	
+	private static void stringBufferEx() {
+		//	String이 불변 객체, StringBuffer는 가변 객체(내부 데이터 변경할 수 있다);
+		StringBuffer sb = new StringBuffer("This");
+		
+		//	문자열을 뒤에 연결: append
+		sb.append(" is pencil");
+		
+		//	문자열 삽입: insert
+		sb.insert(8, "my");
+		
+		//	문자열 치환: replace
+		sb.replace(8, 10, "your ");
+		 
+		System.out.println("최종 문자열:" + sb);	//	최종 출력때까지 새 객체가 생성되지 않음
+		
+		//	버퍼 길이 변경: setLength
+		sb.setLength(10);
+		System.out.println("버퍼 조정:" + sb);
+		
+		//	메서드 체이닝 기법
+		String s = new StringBuffer("This")
+						.append(" is pencil")
+						.insert(8, "my")
+						.replace(8, 10, "your ")
+						.toString();
+		System.out.println("메서드 체이닝:" + s);
 	}
 	
 	private static void usefulMethods() {
