@@ -43,7 +43,7 @@ public class ExceptionEx {
 			e.printStackTrace();
 		} finally {
 			System.out.println("예외 처리 완료!");
-		}ㅇ
+		}
 	}
 	private static void nullPointerExceptionEx() {
 		//	가장 흔하고, 가장 위험한 오류
