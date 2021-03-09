@@ -44,6 +44,7 @@ public class ListEx {
 		System.out.println();
 		
 		//	반복자를 이용한 순회: 추천
+		//	.iterator() -> 반복자를 획득
 		Iterator<String> it = lst.iterator();
 		while(it.hasNext()) {	//	뒤에 내용이 더 있는가?
 			String item = it.next();
