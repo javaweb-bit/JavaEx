@@ -1,9 +1,13 @@
 package com.javaex.network.echoserver;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Reader;
 import java.io.Writer;
 import java.net.ConnectException;
 import java.net.InetSocketAddress;
@@ -36,10 +40,24 @@ public class Client {
 			Writer osw = new OutputStreamWriter(os, "UTF-8");
 			BufferedWriter bw = new BufferedWriter(osw);
 			
+			//	Echo back 메시지 수신
+			InputStream is = socket.getInputStream();
+			Reader isr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(isr);
+			
+			//	메시지 송신
 			String message = "테스트 메시지";
 			bw.write(message);
+			bw.newLine();
+			bw.flush();
+			
 			System.out.println("CLIENT:[전송 메시지]:" + message);
 			
+			//	메시지 수신
+			String rcvMsg = br.readLine();
+			System.out.println("CLIENT:[수신 메시지]:" + rcvMsg);
+			
+			br.close();
 			bw.close();
 			
 			

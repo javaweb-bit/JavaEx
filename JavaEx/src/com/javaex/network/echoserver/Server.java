@@ -1,10 +1,14 @@
 package com.javaex.network.echoserver;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
+import java.io.Writer;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -41,6 +45,11 @@ public class Server {
 			Reader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
 			
+			//	Echo Back을 위한 OutputStream
+			OutputStream os = socket.getOutputStream();
+			Writer osw = new OutputStreamWriter(os, "UTF-8");
+			BufferedWriter bw = new BufferedWriter(osw);
+			
 			//	메시지 읽어오기
 			String message;
 			
@@ -53,11 +62,18 @@ public class Server {
 				}
 				
 				System.out.println("SERVER: [수신 메시지]" + message);
+				
+				//	Echo Back 메시지 전송
+				message = "Echo back - " + message;
+				System.out.println("SERVER: [Echo back] :" + message);
+				bw.write(message);
+				bw.newLine();
+				bw.flush();
 			}
 			
-			
-			
-			
+			bw.close();
+			br.close();
+
 			//	후처리
 			System.out.println("SERVER: [서버를 종료합니다]");
 		} catch (Exception e) {
