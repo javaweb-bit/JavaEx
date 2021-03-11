@@ -46,19 +46,6 @@ public class Client {
 			Reader isr = new InputStreamReader(is);
 			BufferedReader br = new BufferedReader(isr);
 			
-			//	메시지 송신
-//			String message = "테스트 메시지";
-//			bw.write(message);
-//			bw.newLine();
-//			bw.flush();
-			
-//			
-//			System.out.println("CLIENT:[전송 메시지]:" + message);
-//			
-//			//	메시지 수신
-//			String rcvMsg = br.readLine();
-//			System.out.println("CLIENT:[수신 메시지]:" + rcvMsg);
-			
 			//	사용자로부터 메시지를 입력 -> 서버로 전송
 			Scanner scanner = new Scanner(System.in);
 			
@@ -82,13 +69,6 @@ public class Client {
 			scanner.close();
 			br.close();
 			bw.close();
-			
-			
-			
-			
-			
-			
-			
 			
 			//	후처리
 			System.out.println("<클라이언트 종료>");
