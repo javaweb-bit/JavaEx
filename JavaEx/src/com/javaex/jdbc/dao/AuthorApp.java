@@ -10,8 +10,10 @@ public class AuthorApp {
 		listAuthors();
 //		insertAuthor();
 //		deleteAuthor();
-		updateAuthor();
-		listAuthors();
+//		updateAuthor();
+//		listAuthors();
+		
+		searchAuthors();
 	}
 	
 	private static void listAuthors() {
@@ -73,6 +75,23 @@ public class AuthorApp {
 		boolean success = dao.update(vo);
 		
 		System.out.println("Author UPDATE:" + (success ? "성공": "실패"));
+		scanner.close();
+	}
+	
+	private static void searchAuthors() {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("검색어:");
+		String keyword = scanner.next();
+		
+		AuthorDao dao = new AuthorDaoOracleImpl();
+		List<AuthorVo> list = dao.search(keyword);
+		
+		Iterator<AuthorVo> it = list.iterator();
+		
+		while(it.hasNext()) {
+			AuthorVo vo = it.next();
+			System.out.println(vo);
+		}
 		scanner.close();
 	}
 
